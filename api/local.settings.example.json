@@ -1,0 +1,13 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "AzureWebJobsStorage": "",
+    "PAYLOAD_URL": "http://localhost:3001",
+    "PAYLOAD_API_KEY": "",
+    "PAYLOAD_API_KEY_COLLECTION": "users",
+    "PAYLOAD_CAREERS_COLLECTION": "careers",
+    "PAYLOAD_PUBLISHED_FIELD": "published",
+    "PAYLOAD_DRAFTS": "false"
+  }
+}

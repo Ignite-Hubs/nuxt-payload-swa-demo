@@ -1,0 +1,99 @@
+name: Build and deploy to Azure Static Web Apps
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    types: [opened, synchronize, reopened, closed]
+    branches: [main]
+  # Triggered by Payload (afterChange/afterDelete hook) when careers change.
+  repository_dispatch:
+    types: [payload-content-changed]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pull-requests: write # SWA posts the preview environment URL on PRs
+
+concurrency:
+  # Newer content always wins: cancel an in-flight build for the same ref.
+  group: swa-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build_and_deploy:
+    name: Build and deploy
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      # Build-time access to Payload: route discovery and prerendering.
+      PAYLOAD_URL: ${{ secrets.PAYLOAD_URL }}
+      PAYLOAD_API_KEY: ${{ secrets.PAYLOAD_API_KEY }}
+      PAYLOAD_API_KEY_COLLECTION: ${{ vars.PAYLOAD_API_KEY_COLLECTION || 'users' }}
+      PAYLOAD_CAREERS_COLLECTION: ${{ vars.PAYLOAD_CAREERS_COLLECTION || 'careers' }}
+      PAYLOAD_PUBLISHED_FIELD: ${{ vars.PAYLOAD_PUBLISHED_FIELD || 'published' }}
+      PAYLOAD_DRAFTS: ${{ vars.PAYLOAD_DRAFTS || 'false' }}
+      NUXT_PUBLIC_SITE_NAME: ${{ vars.SITE_NAME || 'Ignite Hubs Careers Hubs' }}
+      NUXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL }}
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: |
+            api/package-lock.json
+            web/package-lock.json
+
+      - name: Check Payload configuration
+        run: |
+          if [ -z "$PAYLOAD_URL" ]; then
+            echo "::error::The PAYLOAD_URL secret is not set (required to prerender career pages)."
+            exit 1
+          fi
+
+      # The API is built here (not by the SWA action's Oryx build) so that the
+      # code shared with the frontend in ../shared is bundled and tested in CI.
+      - name: API - install, typecheck, test, build
+        working-directory: api
+        run: |
+          npm ci
+          npm run typecheck
+          npm test
+          npm run build
+          npm prune --omit=dev
+
+      - name: Web - install and typecheck
+        working-directory: web
+        run: |
+          npm ci
+          npm run typecheck
+
+      - name: Web - generate static site
+        working-directory: web
+        run: npm run generate
+
+      - name: Deploy
+        uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_OCEAN_0DDB7AA10 }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          action: upload
+          app_location: web/.output/public
+          api_location: api
+          output_location: ''
+          skip_app_build: true
+          skip_api_build: true
+
+  close_pull_request:
+    name: Close preview environment
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_KIND_OCEAN_0DDB7AA10 }}
+          action: close
+          app_location: web/.output/public

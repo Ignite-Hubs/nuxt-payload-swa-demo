@@ -1,0 +1,366 @@
+:root {
+  --bg: #fffbf7;
+  --surface: #ffffff;
+  --text: #1c1917;
+  --muted: #57534e;
+  --border: #ede5dd;
+  --accent: #c2410c;
+  --accent-hover: #9a3412;
+  --accent-contrast: #ffffff;
+  --accent-soft: #fff1e6;
+  --error-bg: #fef2f2;
+  --error-text: #991b1b;
+  --warning-bg: #fffbeb;
+  --warning-text: #92400e;
+  --radius: 12px;
+  --shadow: 0 1px 2px rgb(28 25 23 / 0.06), 0 4px 12px rgb(28 25 23 / 0.04);
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14110f;
+    --surface: #1f1a17;
+    --text: #f5f0eb;
+    --muted: #a8a29e;
+    --border: #2f2925;
+    --accent: #fb923c;
+    --accent-hover: #fdba74;
+    --accent-contrast: #14110f;
+    --accent-soft: #2f1d12;
+    --error-bg: #3b0d0d;
+    --error-text: #fecaca;
+    --warning-bg: #3a2a05;
+    --warning-text: #fde68a;
+    --shadow: none;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.6 system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-hover);
+}
+
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 0.5rem;
+}
+
+.container {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  left: -999px;
+}
+
+.skip-link:focus {
+  left: 1rem;
+  top: 1rem;
+  z-index: 10;
+  background: var(--surface);
+  padding: 0.5rem 1rem;
+}
+
+/* Layout */
+.shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 64px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text);
+  text-decoration: none;
+}
+
+.brand:hover {
+  color: var(--text);
+}
+
+.brand__mark {
+  display: block;
+  border-radius: 7px;
+}
+
+.site-header nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.site-header nav a {
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-header nav a.router-link-active {
+  color: var(--text);
+}
+
+.site-main {
+  flex: 1;
+  padding-top: 2.5rem;
+  padding-bottom: 4rem;
+}
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.875rem;
+  padding: 1.5rem 0;
+}
+
+/* Elements */
+.lead {
+  color: var(--muted);
+  font-size: 1.125rem;
+  margin: 0 0 1.5rem;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 0 0 0.5rem;
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--accent-contrast);
+  border: 0;
+  border-radius: 999px;
+  padding: 0.7rem 1.4rem;
+  font: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: var(--accent-hover);
+  color: var(--accent-contrast);
+}
+
+.button--secondary {
+  background: transparent;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+}
+
+.button--secondary:hover {
+  background: var(--accent);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.notice {
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.notice--error {
+  background: var(--error-bg);
+  color: var(--error-text);
+  border-color: transparent;
+}
+
+.notice--warning {
+  background: var(--warning-bg);
+  color: var(--warning-text);
+  border-color: transparent;
+}
+
+/* Home */
+.hero {
+  padding: 2.5rem 2rem 3rem;
+  margin-bottom: 2.5rem;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--accent-soft), transparent 70%);
+}
+
+.hero h1 {
+  max-width: 20ch;
+}
+
+.hero .lead {
+  max-width: 56ch;
+}
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+/* Career list & card */
+.career-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 280px), 1fr));
+  gap: 1rem;
+}
+
+.career-list > li {
+  display: flex;
+}
+
+.career-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.5rem;
+  transition: border-color 0.15s;
+}
+
+.career-card:hover {
+  border-color: var(--accent);
+}
+
+.career-card__title {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.career-card__title a {
+  color: var(--text);
+  text-decoration: none;
+}
+
+.stretched-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.career-card__excerpt {
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+.career-card__more {
+  margin: auto 0 0;
+  padding-top: 0.75rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.load-more {
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+/* Career detail */
+.back-link {
+  display: inline-block;
+  margin-bottom: 1.5rem;
+  text-decoration: none;
+}
+
+.career__header {
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.career__next {
+  margin-top: 2.5rem;
+}
+
+.rich-text {
+  max-width: 68ch;
+}
+
+.rich-text h2 {
+  font-size: 1.375rem;
+  margin-top: 2rem;
+}
+
+.rich-text blockquote {
+  margin: 1rem 0;
+  padding-left: 1rem;
+  border-left: 3px solid var(--border);
+  color: var(--muted);
+}
+
+/* Error page */
+.error-page {
+  padding: 3rem 0;
+}

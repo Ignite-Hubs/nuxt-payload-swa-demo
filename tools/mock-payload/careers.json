@@ -1,0 +1,75 @@
+[
+  {
+    "id": 1,
+    "title": "Software Developer",
+    "slug": "software-developer",
+    "content": "\n<h2>Explore a Career as a Software Developer</h2>\n\n<p>Software developers design, build and improve the apps, websites and systems people use every day, from games and banking apps to the software that runs hospitals.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Turn ideas and requirements into working code</li>\n  <li>Test and fix problems in software</li>\n  <li>Work in teams with designers, testers and product owners</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Logical thinking and problem solving</li>\n  <li>Patience and attention to detail</li>\n  <li>Teamwork and clear communication</li>\n</ul>\n<h3>How to get there</h3>\n<p>Common routes include a degree in computer science or software engineering, a digital or software development apprenticeship, or an intensive coding bootcamp. Building your own projects at school is a great way to start.</p>\n<h3>Where it can lead</h3>\n<p>With experience you could become a senior or lead developer, a software architect, or specialise in areas such as cyber security, games or artificial intelligence.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z",
+    "internalNotes": "Not public: reviewed by the careers team."
+  },
+  {
+    "id": 2,
+    "title": "Registered Nurse",
+    "slug": "registered-nurse",
+    "content": "\n<h2>Explore a Career as a Registered Nurse</h2>\n\n<p>Nurses care for patients of all ages, helping them recover from illness or injury and supporting them and their families through some of the most important moments of their lives.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Assess patients and plan their care</li>\n  <li>Give medicines and treatments</li>\n  <li>Work alongside doctors and other health professionals</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Compassion and empathy</li>\n  <li>Staying calm under pressure</li>\n  <li>Excellent communication</li>\n</ul>\n<h3>How to get there</h3>\n<p>You will usually need a nursing degree in adult, children’s, mental health or learning disability nursing. Nursing degree apprenticeships let you earn while you study.</p>\n<h3>Where it can lead</h3>\n<p>You could specialise in areas such as intensive care or midwifery, become a nurse practitioner, or move into management, teaching or research.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "title": "Electrician",
+    "slug": "electrician",
+    "content": "\n<h2>Explore a Career as an Electrician</h2>\n\n<p>Electricians install, maintain and repair the electrical systems that power homes, schools, businesses and renewable energy projects such as solar panels and electric vehicle chargers.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Install wiring, lighting and power systems</li>\n  <li>Find and fix electrical faults</li>\n  <li>Make sure work meets safety standards</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Practical, hands-on ability</li>\n  <li>Maths and reading technical drawings</li>\n  <li>A careful approach to safety</li>\n</ul>\n<h3>How to get there</h3>\n<p>Most electricians train through an electrical installation apprenticeship. College courses in electrical installation can also help you get started.</p>\n<h3>Where it can lead</h3>\n<p>You could run your own business, become an electrical engineer, or specialise in green technology and smart home systems.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "title": "Graphic Designer",
+    "slug": "graphic-designer",
+    "content": "\n<h2>Explore a Career as a Graphic Designer</h2>\n\n<p>Graphic designers use images, type and colour to communicate ideas, creating everything from logos and posters to websites, packaging and social media campaigns.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Create visual concepts by hand or with design software</li>\n  <li>Develop brands and visual identities</li>\n  <li>Present ideas to clients and refine them using feedback</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Creativity and a strong eye for detail</li>\n  <li>Using design software</li>\n  <li>Taking feedback and meeting deadlines</li>\n</ul>\n<h3>How to get there</h3>\n<p>Many designers study art, graphic design or visual communication at college or university. A strong portfolio of your work matters as much as qualifications.</p>\n<h3>Where it can lead</h3>\n<p>You could become a senior designer or art director, move into user experience (UX) or motion design, or work as a freelancer.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "title": "Civil Engineer",
+    "slug": "civil-engineer",
+    "content": "\n<h2>Explore a Career as a Civil Engineer</h2>\n\n<p>Civil engineers plan, design and manage the construction of the structures we rely on, including bridges, roads, railways, tunnels, flood defences and water systems.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Design structures and work out how they will be built</li>\n  <li>Assess risks and environmental impact</li>\n  <li>Manage projects and teams on site</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Maths and physics</li>\n  <li>Problem solving and creativity</li>\n  <li>Project management and leadership</li>\n</ul>\n<h3>How to get there</h3>\n<p>A degree in civil engineering is the most common route. Civil engineering apprenticeships, including degree apprenticeships, are also widely available.</p>\n<h3>Where it can lead</h3>\n<p>With experience you can become a chartered engineer, lead major infrastructure projects, or specialise in areas such as sustainable design.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 6,
+    "title": "Data Analyst",
+    "slug": "data-analyst",
+    "content": "\n<h2>Explore a Career as a Data Analyst</h2>\n\n<p>Data analysts collect and study information to help organisations make better decisions, whether that is improving a hospital service, a sports team’s performance or a shop’s stock levels.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Gather and clean data from different sources</li>\n  <li>Look for patterns and trends</li>\n  <li>Present findings with charts and reports</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Confidence with numbers and statistics</li>\n  <li>Curiosity and asking good questions</li>\n  <li>Explaining complex ideas simply</li>\n</ul>\n<h3>How to get there</h3>\n<p>You could study maths, statistics, computer science or economics at university, or take a data analyst apprenticeship. Spreadsheet and coding skills give you a head start.</p>\n<h3>Where it can lead</h3>\n<p>You could progress to senior analyst, data scientist or data engineer, or lead an analytics team.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 7,
+    "title": "Primary School Teacher",
+    "slug": "primary-school-teacher",
+    "content": "\n<h2>Explore a Career as a Primary School Teacher</h2>\n\n<p>Primary school teachers help children aged 4 to 11 learn to read, write, count and discover the world around them, and play a big part in how young people see themselves.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Plan and deliver lessons across many subjects</li>\n  <li>Track pupils’ progress and support those who need extra help</li>\n  <li>Work with parents, carers and other staff</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Patience and enthusiasm</li>\n  <li>Organisation and planning</li>\n  <li>Communicating with children and adults</li>\n</ul>\n<h3>How to get there</h3>\n<p>You will need a degree and qualified teacher status (QTS). You can train through a teaching degree, or complete a postgraduate teacher training course after any degree.</p>\n<h3>Where it can lead</h3>\n<p>You could become a subject leader, special educational needs coordinator (SENCO), deputy head or headteacher.</p>\n",
+    "published": true,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  },
+  {
+    "id": 8,
+    "title": "Marketing Executive",
+    "slug": "marketing-executive",
+    "content": "\n<h2>Explore a Career as a Marketing Executive</h2>\n\n<p>Marketing executives help organisations reach the right people with the right message.</p>\n<h3>What they do</h3>\n<ul>\n  <li>Plan campaigns</li>\n  <li>Write content</li>\n</ul>\n<h3>Skills you will need</h3>\n<ul>\n  <li>Creativity</li>\n</ul>\n<h3>How to get there</h3>\n<p>Draft: routes still being written.</p>\n<h3>Where it can lead</h3>\n<p>Draft.</p>\n",
+    "published": false,
+    "createdAt": "2026-09-01T09:00:00.000Z",
+    "updatedAt": "2026-10-01T09:00:00.000Z"
+  }
+]

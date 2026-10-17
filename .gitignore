@@ -1,0 +1,10 @@
+node_modules/
+.nuxt/
+.output/
+dist
+.env
+.env.*
+!.env.example
+local.settings.json
+.DS_Store
+*.log
