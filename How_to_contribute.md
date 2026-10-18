@@ -1,6 +1,6 @@
 # Contributing
 
-This guide is for **Nuxt developers who are used to running Nuxt as a Node server**, for example on a VM, behind nginx or PM2. Azure Static Web Apps (SWA) may be new to you. You keep writing Nuxt the way you normally do: pages, components, composables, `useFetch`, `public/`. What changes is **when your code runs** and **where server-side logic lives**. This guide covers that shift and then gives recipes for common tasks.
+This guide is for **Nuxt developers who are used to running Nuxt as a Node server**, for example on a VM, behind nginx or PM2. A Nuxt app on Azure Static Web Apps (SWA) framework works differently. You keep writing Nuxt the way you normally do: pages, components, composables, `useFetch`, `public/`. What changes is **when your code runs** and **where server-side logic lives**. This guide covers that shift and then gives recipes for common tasks.
 
 - [1. The mental model: what runs where](#1-the-mental-model-what-runs-where)
 - [2. From a VM deployment to SWA: concept mapping](#2-from-a-vm-deployment-to-swa-concept-mapping)
@@ -23,7 +23,7 @@ On a VM, `nuxt build` produces a Node server (`.output/server/index.mjs`). Every
 Here, nothing Nuxt-related runs at request time on a server. There are three stages:
 
 ```
- ┌────────────── BUILD TIME (GitHub Actions runner) ──────────────┐
+ ┌────────────── BUILD TIME (GitHub Actions runner) ───────────────┐
  │ nuxt generate                                                   │
  │  • runs every page's setup() once, server-side, like SSR        │
  │  • useFetch('/api/careers') → hits web/server/api (Nitro), which│
@@ -32,13 +32,13 @@ Here, nothing Nuxt-related runs at request time on a server. There are three sta
  └─────────────────────────────────────────────────────────────────┘
                               │  upload
                               ▼
- ┌──────────────── REQUEST TIME (Azure Static Web Apps) ──────────┐
+ ┌──────────────── REQUEST TIME (Azure Static Web Apps) ───────────┐
  │  /, /careers, /careers/*   → static files from a global CDN     │
  │  /api/*                    → Azure Functions in api/ (Node 22)  │
  └─────────────────────────────────────────────────────────────────┘
                               │
                               ▼
- ┌──────────────────── IN THE BROWSER ────────────────────────────┐
+ ┌──────────────────── IN THE BROWSER ─────────────────────────────┐
  │ Vue hydrates the static HTML. Code in onMounted / event handlers│
  │ can call /api/* for live data (see useRevalidate in this repo). │
  └─────────────────────────────────────────────────────────────────┘
