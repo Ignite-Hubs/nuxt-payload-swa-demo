@@ -1,4 +1,4 @@
-# Developer Manual
+# Developer Quick Start
 
 The short version of [How_to_contribute.md](How_to_contribute.md). Read this, run the quick start, and make your first change. Each section links to the full explanation.
 
@@ -50,7 +50,7 @@ npm run dev              # terminal 2: http://localhost:3000
 | Build what production gets | `cd web && npm run generate` → `web/.output/public` |
 | Run tests | `cd api && npm test` |
 | Type-check | `cd api && npm run typecheck` and `cd web && npm run typecheck` |
-| Emulate production (Functions, headers, auth) | See [How_to_contribute §4](How_to_contribute.md#4-local-development) |
+| Emulate production (Functions, headers, auth) | See [How_to_contribute 4](How_to_contribute.md#4-local-development) |
 
 > ⚠️ `nuxt dev` renders per request, so it can hide production bugs. **Run `npm run generate` before every PR.**
 
@@ -111,19 +111,19 @@ flowchart TB
   F --> C["staticwebapp.config.json<br/>allow POST etc. if not GET"]
 ```
 
-Full example: [How_to_contribute §7.2](How_to_contribute.md#72-add-a-new-api-endpoint).
+Full example: [How_to_contribute 7.2](How_to_contribute.md#72-add-a-new-api-endpoint).
 
 ### Integrations at a glance
 
 | Integration | Browser | Azure Function (`api/`) | Separate Functions app | Details |
 |---|---|---|---|---|
-| **Payload CMS**: read content | – | ✅ live reads | – | [§7.3](How_to_contribute.md#73-payload-cms) |
-| **Azure Storage queue**: send | – | ✅ `@azure/storage-queue` | – | [§7.4 A](How_to_contribute.md#74-integrate-azure-storage-queues) |
-| **Azure Storage queue**: process | – | ❌ (HTTP triggers only) | ✅ `app.storageQueue` | [§7.4 B](How_to_contribute.md#74-integrate-azure-storage-queues) |
-| **Supabase Auth** | ✅ supabase-js, publishable key | ✅ verify token (`x-supabase-auth`) | – | [§7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
-| **Supabase DB**: user's own rows | ✅ protected by **RLS** | – | – | [§7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
-| **Supabase DB**: privileged | – | ✅ secret key | – | [§7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
-| Timers / cron | – | ❌ | ✅ or GitHub `schedule:` | [§2](How_to_contribute.md#2-from-a-vm-deployment-to-swa-concept-mapping) |
+| **Payload CMS**: read content | – | ✅ live reads | – | [7.3](How_to_contribute.md#73-payload-cms) |
+| **Azure Storage queue**: send | – | ✅ `@azure/storage-queue` | – | [7.4 A](How_to_contribute.md#74-integrate-azure-storage-queues) |
+| **Azure Storage queue**: process | – | ❌ (HTTP triggers only) | ✅ `app.storageQueue` | [7.4 B](How_to_contribute.md#74-integrate-azure-storage-queues) |
+| **Supabase Auth** | ✅ supabase-js, publishable key | ✅ verify token (`x-supabase-auth`) | – | [7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
+| **Supabase DB**: user's own rows | ✅ protected by **RLS** | – | – | [7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
+| **Supabase DB**: privileged | – | ✅ secret key | – | [7.5](How_to_contribute.md#75-supabase-for-database-and-auth) |
+| Timers / cron | – | ❌ | ✅ or GitHub `schedule:` | [2](How_to_contribute.md#2-from-a-vm-deployment-to-swa-concept-mapping) |
 
 Calling **any** new origin from the browser? Add it to `connect-src` in `staticwebapp.config.json`, or the browser will block it.
 
@@ -185,7 +185,7 @@ flowchart LR
 
 | Symptom | Likely cause |
 |---|---|
-| Works in dev, broken in production | Relied on runtime SSR, `web/server/` or cookies ([§3](How_to_contribute.md#3-what-works-what-doesnt)) |
+| Works in dev, broken in production | Relied on runtime SSR, `web/server/` or cookies ([3](How_to_contribute.md#3-what-works-what-doesnt)) |
 | Old content on the site | Expected until the next build; check the publish hook ran in GitHub *Actions* |
 | `Payload returned HTTP 400` | Querying a field the collection lacks, e.g. `PAYLOAD_DRAFTS=true` (README → *Troubleshooting*) |
 | Browser "Refused to connect" | Add the origin to the CSP |

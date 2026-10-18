@@ -64,10 +64,10 @@ Three rules follow from this:
 | Write `server/api/foo.ts` | Write an **Azure Function** in `api/src/functions/`. Optionally mirror it in `web/server/api/` if pages need it at build time (see [7.2](#72-add-a-new-api-endpoint)). |
 | Use `server/middleware` (auth, redirects, headers) | Use [`web/public/staticwebapp.config.json`](web/public/staticwebapp.config.json) for routes, redirects, headers and roles, SWA's built-in auth (`/.auth/*`), or logic in a Function. |
 | Configure nginx (headers, gzip, caching, rewrites) | Use `staticwebapp.config.json`. Compression and the CDN are handled by SWA. |
-| Read `process.env` / `runtimeConfig` at runtime | **Two separate places.** Build-time values come from **GitHub secrets/variables**. Function runtime values come from **SWA app settings**. See [§8](#8-configuration-and-secrets). |
+| Read `process.env` / `runtimeConfig` at runtime | **Two separate places.** Build-time values come from **GitHub secrets/variables**. Function runtime values come from **SWA app settings**. See [8](#8-configuration-and-secrets). |
 | Set `routeRules` with `isr`, `swr` or `ssr: true` per route | Not available: every page is prerendered. For freshness, rebuild on content change and/or re-fetch in the browser. |
 | Run cron jobs on the box | Use a GitHub Actions `schedule:` that rebuilds or calls an API, or a timer-triggered Function in a **separate** Functions app (see [7.4](#74-integrate-azure-storage-queues)). |
-| Read logs with `pm2 logs` or journald | Build logs are in **GitHub Actions**. Function logs are in **Application Insights** or the SWA portal. See [§10](#10-debugging-and-logs). |
+| Read logs with `pm2 logs` or journald | Build logs are in **GitHub Actions**. Function logs are in **Application Insights** or the SWA portal. See [10](#10-debugging-and-logs). |
 | Roll back with a symlink switch | Revert the commit on `main`, or re-run an earlier successful workflow run. |
 
 ---
@@ -337,7 +337,7 @@ Then:
 
 Things to know:
 - **Managed identity is not available** in SWA managed Functions, so use a connection string or a SAS URL stored in app settings. If policy requires managed identity or Key Vault references, use a bring-your-own Functions app (Standard plan; see below).
-- **Local development:** run [Azurite](https://learn.microsoft.com/azure/storage/common/storage-use-azurite) and set `AZURE_STORAGE_CONNECTION_STRING=UseDevelopmentStorage=true`. Test with `func start` + `swa start` (see [§4](#4-local-development)). Don't add queue writes to the Nitro mirror: `nuxt generate` must never send messages.
+- **Local development:** run [Azurite](https://learn.microsoft.com/azure/storage/common/storage-use-azurite) and set `AZURE_STORAGE_CONNECTION_STRING=UseDevelopmentStorage=true`. Test with `func start` + `swa start` (see [4](#4-local-development)). Don't add queue writes to the Nitro mirror: `nuxt generate` must never send messages.
 - Write endpoints are public. Add validation, a size limit, and rate limiting or auth (SWA `allowedRoles`) as appropriate.
 
 #### B) Process messages (queue trigger)
@@ -407,7 +407,7 @@ create policy "delete own" on public.saved_careers for delete to authenticated u
 #### Step 2: Configuration
 
 ```ts
-// web/nuxt.config.ts: public values, baked into the build (see §8)
+// web/nuxt.config.ts: public values, baked into the build (see 8)
 runtimeConfig: {
   public: {
     supabaseUrl: '',   // NUXT_PUBLIC_SUPABASE_URL
@@ -601,7 +601,7 @@ Install with `cd api && npm install @supabase/supabase-js`. Do **not** mirror au
 Use the same decision table ([7.1](#71-where-integration-code-goes)):
 - Secret key → Function.
 - Event-driven → separate Functions app.
-- Public browser SDK → add its origin to the CSP (§9).
+- Public browser SDK → add its origin to the CSP (9).
 
 ---
 
@@ -636,7 +636,7 @@ All request-time web configuration lives in [`web/public/staticwebapp.config.jso
 - **Caching:** `/_nuxt/*` is immutable for one year (hashed filenames). Functions set their own `Cache-Control`.
 - **Redirects:** use `routes` entries with `redirect` and `statusCode`. Don't use Nuxt server middleware.
 
-Test changes with `swa start` locally (§4) and on the PR preview.
+Test changes with `swa start` locally (4) and on the PR preview.
 
 ---
 
@@ -648,9 +648,9 @@ Test changes with `swa start` locally (§4) and on the PR preview.
 | `/api/*` errors in production | Azure portal → Static Web App → *Application Insights* (enable it), or the Functions logs. Handlers log via `context.error`. |
 | `Payload returned HTTP 400/401/403` | README → *Troubleshooting* |
 | Page shows old content | Expected until the next build. Check that the publish hook fired (repo *Actions* → `repository_dispatch` runs) and that the page uses `useRevalidate`. |
-| Works in `nuxt dev`, broken in production | You probably relied on runtime SSR, cookies, `server/` code or `NUXT_PUBLIC_*` changes. Re-read [§3](#3-what-works-what-doesnt) and test with `npm run generate` plus `swa start`. |
+| Works in `nuxt dev`, broken in production | You probably relied on runtime SSR, cookies, `server/` code or `NUXT_PUBLIC_*` changes. Re-read [3](#3-what-works-what-doesnt) and test with `npm run generate` plus `swa start`. |
 | Hydration mismatch warnings | Time- or user-dependent output rendered during prerender. Move it to `onMounted` or `<ClientOnly>`. |
-| Browser console shows a CSP violation | Add the origin to `staticwebapp.config.json` (§9). |
+| Browser console shows a CSP violation | Add the origin to `staticwebapp.config.json` (9). |
 
 ---
 
